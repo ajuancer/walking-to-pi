@@ -29,7 +29,11 @@ let stepsPerCycle = []; // number of steps of each cycle
 let prevVector, currentVector, currentScreenVector, prevScreenVector, bestPi;
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(window.innerWidth, window.innerHeight);
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 // Return a new vector randomly pointing
@@ -69,7 +73,7 @@ function draw() {
     stroke(20, 100, 10);
     strokeWeight(25);
     point(width / 2, height / 2);
-    
+
     prevVector = createVector(width / 2, height / 2);
     prevScreenVector = createVector(width / 2, height / 2);
     totalSteps += stepIncrement;
@@ -111,7 +115,12 @@ function draw() {
   // Plot line connecting previous with current step
   stroke(255, 100);
   strokeWeight(6);
-  line(prevScreenVector.x, prevScreenVector.y, currentScreenVector.x, currentScreenVector.y);
+  line(
+    prevScreenVector.x,
+    prevScreenVector.y,
+    currentScreenVector.x,
+    currentScreenVector.y
+  );
 
   if (stepCount == totalSteps) {
     // In last step of the cycle
